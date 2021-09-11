@@ -1,0 +1,12 @@
+**/target
+**/.idea
+**/*.rs.bk
+Cargo.lock
+.criterion
+**/*.h
+heaptrack*
+.bencher
+*.profile
+*.heap
+rust-fil-proofs.config.toml
+/.idea
