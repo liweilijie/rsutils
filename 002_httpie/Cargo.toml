@@ -1,0 +1,20 @@
+[package]
+name = "httpi"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[example]]
+name = "cli"
+
+[dependencies]
+anyhow = "1" # 错误处理
+clap = "3.0.0-beta.4" # 命令行解析
+colored = "2" # 命令终端多彩显示
+jsonxf = "1.1" # JSON pretty print 格式化
+mime = "0.3" # 处理mime 类型
+# reqwest 默认使用openssl, 有些linux用户如果没有安装好openssl会无法编译，这里改成了使用rustts
+reqwest = {version = "0.11", default-features = false, features = ["json", "rustls-tls"] } # http 客户端
+tokio = {version = "1", features = ["full"]} # 异步处理库
+syntect = "4"

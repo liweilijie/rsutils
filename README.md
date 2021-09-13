@@ -6,3 +6,4 @@
 项目所有列表
 
 - [001_thread-event-loop](./001_thread-event-loop/README.md) 利用thread做的一个简单的event-loop并发应用。
+- [002_httpie](./002_httpie/README.md) 类似curl的一个http请求及返回的CLI命令工具的简单实现。
