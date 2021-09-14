@@ -246,3 +246,58 @@ match匹配很强大，用起来真的很爽，能让代码写得像python的代
       }
   }
   ```
+  
+## if..let
+```rust
+// 以这个 enum 类型为例
+enum Foo {
+    Bar,
+    Baz,
+    Qux(u32)
+}
+
+fn main() {
+    // 创建变量
+    let a = Foo::Bar;
+    let b = Foo::Baz;
+    let c = Foo::Qux(100);
+    
+    // 变量 a 匹配到了 Foo::Bar
+    if let Foo::Bar = a {
+        println!("a is foobar");
+    }
+    
+    // 变量 b 没有匹配到 Foo::Bar，因此什么也不会打印。
+    if let Foo::Bar = b {
+        println!("b is foobar");
+    }
+    
+    // 变量 c 匹配到了 Foo::Qux，它带有一个值，就和上面例子中的 Some() 类似。
+    if let Foo::Qux(value) = c {
+        println!("c is {}", value);
+    }
+}
+```
+
+## while..let
+```rust
+fn main() {
+    // 将 `optional` 设为 `Option<i32>` 类型
+    let mut optional = Some(0);
+
+    // 这读作：当 `let` 将 `optional` 解构成 `Some(i)` 时，就
+    // 执行语句块（`{}`）。否则就 `break`。
+    while let Some(i) = optional {
+        if i > 9 {
+            println!("Greater than 9, quit!");
+            optional = None;
+        } else {
+            println!("`i` is `{:?}`. Try again.", i);
+            optional = Some(i + 1);
+        }
+        // ^ 使用的缩进更少，并且不用显式地处理失败情况。
+    }
+    // ^ `if let` 有可选的 `else`/`else if` 分句，
+    // 而 `while let` 没有。
+}
+```
