@@ -1,0 +1,11 @@
+[package]
+name = "lazy"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lazy_static = "1.4.0" # lazy 加载全局变量
+# to use `phf` in `no_std` environments
+phf = { version = "0.10", default-features = false, features = ["macros"]} # 替代std::collection::HashMap的完美hashMap
