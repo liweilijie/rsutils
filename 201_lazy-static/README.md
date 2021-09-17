@@ -64,9 +64,25 @@ fn main() {
 }
 ```
 
-然而，全局静态变量是我们经常使用的，必须找到高效的方式来创建和查找全局静态变量。下面我们讲述如何在rust中使用全局静态变量。
-请看color.rs代码
+然而，全局静态变量是我们经常使用的，必须找到高效的方式来创建和查找全局静态变量。下面我们讲述如何在`rust`中使用全局静态变量。
+请看**color.rs**代码
 
+
+## 全局静态可变变量的申明，采用lazy_static+Rc+Mutex
+
+```rust
+extern crate lazy_static;
+const DBSTR: &str = "mysql://root:root@127.0.0.1:3306/dbname";
+lazy_static! {
+    static ref DBPOOL:Arc<Mutex<PooledConn>> = Arc::new(Mutex::new(Pool::new_manual(1, 1, DBSTR).unwrap().get_conn().unwrap()));
+}
+
+// 调用
+fn fn1() {
+    let ref mut db = (*DBPOOL).lock().unwrap();
+    let (id):(Option<String>) = db.exec_first("SELECT id FROM dbname WHERE id=?", ("id1",)).unwrap();
+}
+```
 
 ## 链接
 

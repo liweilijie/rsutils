@@ -1,0 +1,4 @@
+debug = false
+port = 9903
+host = "0.0.0.0"
+url = "http://localhost:99"
