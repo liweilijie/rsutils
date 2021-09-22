@@ -1,14 +1,12 @@
 [package]
-name = "hierarchical-env"
+name = "tracinglog"
 version = "0.1.0"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-config = "0.11.0"
-serde_derive = "^1.0.8"
-serde = "^1.0.8"
-# print log
 tracing = "0.1"
 tracing-subscriber = "0.2"
+tracing-attributes = "0.1.16" # for async-fn example
+tokio = { version = "1.1", features = ["full"] } # for async-fn example

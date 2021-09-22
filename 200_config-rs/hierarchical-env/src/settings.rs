@@ -1,5 +1,5 @@
+use config::{Config, ConfigError, Environment, File};
 use std::env;
-use config::{ConfigError, File, Config, Environment};
 
 #[derive(Debug, Deserialize)]
 struct Database {
@@ -47,6 +47,8 @@ impl Settings {
         // Default to 'development' env
         // Note that this file is _optional_
         let env = env::var("RUN_MODE").unwrap_or_else(|_| "development".into());
+        tracing::warn!("env run mode:{}", env);
+
         s.merge(File::with_name(&format!("config/{}", env)).required(false))?;
 
         // Add in a local configuration file
@@ -61,8 +63,8 @@ impl Settings {
         s.set("database.url", "postgres://")?;
 
         // Now that we're done, let's access our configuration
-        println!("debug: {:?}", s.get_bool("debug"));
-        println!("database: {:?}", s.get::<String>("database.url"));
+        tracing::debug!("debug: {:?}", s.get_bool("debug"));
+        tracing::trace!("database: {:?}", s.get::<String>("database.url"));
 
         // You can deserialize (and thus freeze) the entire configuration as
         s.try_into()
