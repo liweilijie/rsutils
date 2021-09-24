@@ -59,7 +59,7 @@ impl PoemConfig {
             defaults.insert(Production, BasicConfig::default(Production));
         }
 
-        let mut config = PoemConfig {
+        let config = PoemConfig {
             active_env: Environment::active()?,
             config: defaults,
         };
@@ -83,13 +83,13 @@ impl PoemConfig {
         };
 
         // Create a config with the defaults; set the env to the active one.
-        let mut config = PoemConfig::active_default_from(Some(filename.as_ref()))?;
+        let config = PoemConfig::active_default_from(Some(filename.as_ref()))?;
 
 
         // Parse the values from the TOML file.
         for (entry, value) in table {
             // Each environment must be a table.
-            let kv_pairs = match value.as_table() {
+            match value.as_table() {
                 Some(table) => table,
                 None => return Err(ConfigError::BadType(
                     entry, "a table", value.type_str(), Some(path.clone())
