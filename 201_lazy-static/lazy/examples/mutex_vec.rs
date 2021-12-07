@@ -16,5 +16,4 @@ fn main() {
     do_a_call();
 
     println!("called {}", ARRAY.lock().unwrap().len());
-
 }
