@@ -11,3 +11,4 @@ heaptrack*
 *.heap
 rust-fil-proofs.config.toml
 /.idea
+/tmp

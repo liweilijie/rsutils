@@ -41,3 +41,10 @@ Rust是被公认的很难学的语言，学习曲线很陡峭。其实你只要�
 - `2`开头的是第三方库的常用方法
 - `4`开头的是随便写的项目
 - `5`开头的也是随便写的项目
+
+## 生成项目
+
+```bash
+cargo new 002_httpie --bin --name httpie
+cargo new 204_error --bin --name errors
+```

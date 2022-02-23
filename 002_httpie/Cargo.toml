@@ -1,20 +1,26 @@
 [package]
-name = "httpi"
+name = "httpie"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [[example]]
 name = "cli"
 
+[[example]]
+name = "cli_verify"
+
+[[example]]
+name = "cli_get"
+
 [dependencies]
 anyhow = "1" # 错误处理
-clap = "3.0.0-beta.4" # 命令行解析
+clap = {version = "3", features = ["derive"]} # 命令行参数处理
 colored = "2" # 命令终端多彩显示
 jsonxf = "1.1" # JSON pretty print 格式化
-mime = "0.3" # 处理mime 类型
-# reqwest 默认使用openssl, 有些linux用户如果没有安装好openssl会无法编译，这里改成了使用rustts
-reqwest = {version = "0.11", default-features = false, features = ["json", "rustls-tls"] } # http 客户端
+mime = "0.3" # 处理MIME类型
+# reqwest 默认使用 openssl, 有些 linux 用户如果没有安装好 openssl 会无法编译，这里我改成了使用 rustls
+reqwest = {version = "0.11", default-features = false, features = ["json", "rustls-tls"]} # HTTP 请求客户端
 tokio = {version = "1", features = ["full"]} # 异步处理库
-syntect = "4"
+syntect = "4" # 语法高亮的插件显示
