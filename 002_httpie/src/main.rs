@@ -3,7 +3,6 @@ use clap::Parser;
 use colored::Colorize;
 use mime::Mime;
 use reqwest::{header, Client, Response, Url};
-use std::fmt::format;
 use std::{collections::HashMap, str::FromStr};
 use syntect::{
     easy::HighlightLines,
@@ -120,7 +119,7 @@ fn print_status(resp: &Response) {
 // 打印服务器返回的 HTTP header
 fn print_headers(resp: &Response) {
     for (name, value) in resp.headers() {
-        println!("{}: {}", name.to_string().green(), value);
+        println!("{}: {:?}", name.to_string().green(), value);
     }
 
     println!();
@@ -217,5 +216,28 @@ mod tests {
                 v: "".into()
             }
         );
+    }
+
+    #[test]
+    fn split_should_is_works() {
+        // split 使用一个字符分隔
+        let test = "cat;bird";
+        let mut values = test.split(';');
+        // for v in values {
+        //     println!("split:{}", v);
+        // }
+        assert_eq!(values.next().unwrap(), "cat");
+        assert_eq!(values.next().unwrap(), "bird");
+
+        let test = "cat dog\nbird";
+        let mut values = test.split(whitespace_test);
+        assert_eq!(values.next().unwrap(), "cat");
+        assert_eq!(values.next().unwrap(), "dog");
+        assert_eq!(values.next().unwrap(), "bird");
+    }
+
+    // split 使用一个回调函数
+    fn whitespace_test(c: char) -> bool {
+        return c == ' ' || c == '\n';
     }
 }

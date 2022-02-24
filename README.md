@@ -42,9 +42,35 @@ Rust是被公认的很难学的语言，学习曲线很陡峭。其实你只要�
 - `4`开头的是随便写的项目
 - `5`开头的也是随便写的项目
 
-## 生成项目
+## 常用命令
 
+**rust环境相关的**
+```bash
+rustup show
+# 升级最新的stable版本
+rustup update stable
+```
+
+**生成项目**
 ```bash
 cargo new 002_httpie --bin --name httpie
 cargo new 204_error --bin --name errors
 ```
+
+**安装crates以及使用features**
+```bash
+cargo install cargo-edit
+cargo add anyhow colored jsonxf mime
+cargo add clap --allow-prerelease
+cargo add reqwest --features json
+cargo add tokio --features full
+```
+
+## vscode
+常用的vscode编辑代码
+
+打开settings.json: cmd+shift+p -> open settings.json
+
+- gd
+- ctrl+o
+- cmd+.
