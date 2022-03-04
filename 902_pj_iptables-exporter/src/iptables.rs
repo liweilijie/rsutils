@@ -43,7 +43,7 @@ impl FromStr for Policy {
     fn from_str(s: &str) -> StdResult<Self, Self::Err> {
         match s {
             "Accept" | "ACCEPT" | "accept" => Ok(Self::Accept),
-            "Drop" | "DROP" | "drop" => Ok(Self::Accept),
+            "Drop" | "DROP" | "drop" => Ok(Self::Drop),
             _ => Err(IptablesError::InvalidPolicy(s.into())),
         }
     }

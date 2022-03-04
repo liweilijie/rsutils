@@ -6,7 +6,7 @@ static VERSION: &str = env!("VERSION_WITH_GIT_HASH");
 static AUTHORS: &str = crate_authors!();
 
 /// A Prometheus exporter for iptables
-#[derive(Clap, Debug)]
+#[derive(Clap)]
 #[clap(author = AUTHORS, version = VERSION)]
 pub(crate) struct Args {
     /// How often metrics are gathered

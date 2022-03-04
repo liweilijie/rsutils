@@ -13,7 +13,6 @@ pub(crate) struct Metrics {
     rule_packets_total: IntCounterVec,
 }
 
-// Registry 是 Arc<RwLock> 结果，所以可以引用且并发安全
 impl Metrics {
     pub(crate) fn new(r: &Registry) -> Result<Self> {
         trace!("Metrics::new");

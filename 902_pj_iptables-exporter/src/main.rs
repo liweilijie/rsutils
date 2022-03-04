@@ -22,7 +22,6 @@ mod parse;
 
 use iptables::{iptables_save, IptablesState, Metrics};
 
-// 创建单一线程的 main runtime 环境运行代码
 #[tokio::main(flavor = "current_thread")]
 async fn main() {
     let args = cli::Args::parse();
@@ -41,8 +40,6 @@ async fn main() {
     tracing_subscriber::fmt::init();
 
     let running = Arc::new(AtomicBool::new(true));
-
-    info!("args: {:#?}", args);
 
     info!("Registering metrics...");
     let registry = Arc::new(Registry::new());
@@ -72,7 +69,6 @@ async fn main() {
         info!("Collecting metrics...");
         let before = Instant::now();
         let out = unwrap_or_exit!(iptables_save().await);
-        info!("Parsing iptables output:\n{}", out);
         let mut state = IptablesState::new();
         unwrap_or_exit!(state.parse(&*out).await);
 

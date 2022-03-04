@@ -66,6 +66,66 @@ cargo add reqwest --features json
 cargo add tokio --features full
 ```
 
+## 编译中文文档
+
+构建参考:
+- [https://github.com/rust-lang/rust](https://github.com/rust-lang/rust)
+- [https://github.com/wtklbm/rust-library-i18n](https://github.com/wtklbm/rust-library-i18n)
+
+
+详细的步骤,以**1.58.1**为例:
+
+1. Make sure you have installed the dependencies:
+    - g++ 5.1 or later or clang++ 3.5 or later
+    - python 3 or 2.7
+    - GNU make 3.81 or later
+    - cmake 3.13.4 or later
+    - ninja
+    - curl
+    - git
+    - ssl which comes in libssl-dev or openssl-devel
+    - pkg-config if you are compiling on Linux and targeting Linux
+2. Clone the source with git:
+```bash
+git clone https://github.com/wtklbm/rust-library-i18n.git
+
+git clone https://github.com/rust-lang/rust.git
+cd rust
+
+git checkout 1.58.1
+rm -rf library
+git clone https://github.com/rust-lang/cargo.git src/tools/cargo
+git clone https://github.com/rust-lang/rust-installer.git src/tools/rust-installer
+git clone https://github.com/
+git clone https://github.com/rust-lang/rls.git src/tools/rls
+git clone https://github.com/rust-lang/miri.git src/tools/miri
+git clone https://github.com/rust-lang/stdarch.git library/stdarch
+git clone https://github.com/rust-lang/backtrace-rs.git library/backtrace
+git clone https://github.com/rust-lang/libbacktrace library/backtrace/crates/backtrace-sys/src/libbacktrace
+
+# 复制中文目录
+cd ../rust-library-i18n/dist
+unzip v1.58.1_contrast.zip # contrast是中英对照表,没有此后缀的是只有中文
+cp -r library ../../rust/ # 复制到rust目录
+cd ../../rust
+
+# 提交一下
+git add -A
+git commit -m none
+
+
+# echo -e "changelog-seen = 2\n[llvm]\nninja = false" >> config.toml\n
+# 将niaja = false打开
+cp config.toml.example config.toml
+
+# 编译,会花很久的时间
+./x.py doc
+
+# 完成之后打开
+open ./build/x86_64-pc-windows-msvc/doc/std/index.html
+```
+
+
 ## vscode
 常用的vscode编辑代码
 

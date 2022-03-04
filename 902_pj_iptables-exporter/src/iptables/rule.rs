@@ -11,7 +11,7 @@ pub(crate) struct Rule {
 impl Rule {
     pub(crate) fn parse_rule<S: AsRef<str>>(line: S) -> Result<(String, Self)> {
         let line = line.as_ref();
-        let counter = Counter::parse_counter(line); // 所有规则的计数器都在开头
+        let counter = Counter::parse_counter(line);
         let counter_end = idx_after(0, line, ']').unwrap_or(0);
         let flag = idx_after(counter_end, line, 'A').unwrap_or(0);
         let chain_start = idx_after(flag, line, ' ').unwrap_or(0);
