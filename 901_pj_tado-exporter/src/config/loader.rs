@@ -26,11 +26,11 @@ pub fn load() -> Config {
         },
         username: match env::var("EXPORTER_USERNAME") {
             Ok(v) => v,
-            Err(_) => "".to_string(),
+            Err(_) => "liweilijie@gmail.com".to_string(),
         },
         password: match env::var("EXPORTER_PASSWORD") {
             Ok(v) => v,
-            Err(_) => "".to_string(),
+            Err(_) => "sbso129129".to_string(),
         },
         client_secret: match env::var("EXPORTER_CLIENT_SECRET") {
             Ok(v) => v,
@@ -54,8 +54,8 @@ mod tests {
 
         // then we should load default values
         assert_eq!(config.ticker, 10);
-        assert_eq!(config.username, "");
-        assert_eq!(config.password, "");
+        assert_eq!(config.username, "liweilijie@gmail.com");
+        assert_eq!(config.password, "sbso129129");
         assert_eq!(config.client_secret, "wZaRN7rpjn3FoNyF5IFuxg9uMzYJcvOoQ8QWiIqS3hfk6gLhVlG57j5YNoZL2Rtc");
 
         // given the following environment variable values
