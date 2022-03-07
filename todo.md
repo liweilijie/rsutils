@@ -14,3 +14,14 @@ struct Node {
  如果要在多线程的环境下使用： downstream: Option<Arc<Mutex<T>>> 或者
  downstream: Option<Arc<RwLock<T>>>
  lazy_static! 解决全局变量的问题
+
+
+## project
+
+- [https://rustrepo.com/](https://rustrepo.com/)
+
+- [https://github.com/fredr/data-exporter](https://github.com/fredr/data-exporter)
+- [https://github.com/kbknapp/wireguard_exporter](https://github.com/kbknapp/wireguard_exporter)
+- [https://github.com/blobcode/kagi.git](https://github.com/blobcode/kagi.git) simple kv sotre
+- [https://github.com/blobcode/pine.git](https://github.com/blobcode/pine.git) A simple hyper-based reverse proxy built in rust.
+- [https://github.com/ttys3/static-server](https://github.com/ttys3/static-server) web server
