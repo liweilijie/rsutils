@@ -2,6 +2,10 @@
 
 iptables 的 prometheus exporter 功能，需要 sudo权限运行。
 
+架构图：
+
+![review iptables exporter](./review.png)
+
 
 `Result.map_err()`: 通过对包含的`Err`值应用函数，将`Ok`值 `Maps` 转换为`Result<T, F>`，而保持`Ok`值不变。 此函数可用于在处理错误时传递成功的结果。
 ```rust
