@@ -25,3 +25,4 @@ struct Node {
 - [https://github.com/blobcode/kagi.git](https://github.com/blobcode/kagi.git) simple kv sotre
 - [https://github.com/blobcode/pine.git](https://github.com/blobcode/pine.git) A simple hyper-based reverse proxy built in rust.
 - [https://github.com/ttys3/static-server](https://github.com/ttys3/static-server) web server
+- [https://github.com/ttys3/static-server](https://github.com/ttys3/static-server) simple static-server by axum
