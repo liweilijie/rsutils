@@ -7,20 +7,19 @@ async fn main() -> Result<()> {
 
     info!("Sending SMS");
 
-    let ak = "LTAI5t6SBdCNdURqbD4jumaM";
-    let sk = "MSevUswTfVxwKaayJad5iGAe9lKfzJ";
+    let ak = "LTAxxxx";
+    let sk = "MSexxxx";
 
     let template_code = "SMS_235793799";
     let sign_name = "恒乐淘";
 
-
     let p = aliyun_sdk::SmsParam {
         name: "rust test".to_string(),
-        code: "20220309".to_string()
+        code: "20220309".to_string(),
     };
 
     let sms = aliyun_sdk::SmsRequest {
-        phones: vec!["18180815129".to_string()],
+        phones: vec!["1818081xxxx".to_string()],
         sign_name: sign_name.to_string(),
         template_code: template_code.to_string(),
         out_id: Some("123".to_string()),
