@@ -1,0 +1,17 @@
+[package]
+name = "todolist"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = "0.4.8"
+serde = { version = "1.0.136", features = ["derive"] }
+tokio = { version = "1.17.0", features = ["full"] }
+tracing = "0.1.32"
+tracing-subscriber = { version = "0.3.9", features = ["env-filter"] }
+uuid = { version = "0.8", features = ["serde", "v4"] }
+tower = { version = "0.4", features = ["util", "timeout"] }
+tower-http = { version = "0.2.0", features = ["add-extension", "trace"] }
+anyhow = "1.0.56"
