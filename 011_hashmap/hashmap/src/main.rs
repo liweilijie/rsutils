@@ -1,3 +1,4 @@
+use std::collections::hash_map::Entry::{Occupied, Vacant};
 use std::collections::HashMap;
 
 fn main() {
@@ -29,6 +30,7 @@ fn main() {
     // Entry的or_insert_with()方法
     let mut map: HashMap<&str, String> = HashMap::new();
     let s = "hoho".to_string();
+    // 如果为空，则通过插入default闭包返回值来确保该值在条目中，并返回对条目中值的可变引用。
     map.entry("poneyland").or_insert_with(|| s);
     assert_eq!(map["poneyland"], "hoho".to_string());
 
@@ -123,14 +125,16 @@ fn main() {
     // HashMap => Vec
     let vec: Vec<(_, _)> = hd.into_iter().collect();
     println!("vec: {:?}", vec); // vec: [("julia", {"book1": [3.0]}), ("rust", {"book1": [1.0, 4.0]})]
-                                // Vec=>HashMap
-                                // Vec(&str, i32)
+
+    // Vec=>HashMap
+    // Vec(&str, i32)
     let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("Iceland", 10)]
         .iter()
         .cloned()
         .collect();
     println!("timber_resources: {:?}", timber_resources); // timber_resources: {"Iceland": 10, "Denmark": 50, "Norway": 100}
-                                                          // Vec
+
+    // Vec
     let data = vec![1, 2, 3, 4, 5, 6];
     let map: HashMap<i64, i64> = data.iter().map(|&x| (x, x * 10)).collect();
     println!("map: {:?}", map); // map: {3: 30, 6: 60, 5: 50, 2: 20, 4: 40, 1: 10}
@@ -175,6 +179,56 @@ fn main() {
     let nums: Vec<&str> = contacts.values().into_iter().map(|&x| x).collect();
     println!("names: {:?}", names); // names: ["Daniel", "Ashley", "Katie", "Robert"]
     println!("nums: {:?}", nums); // nums: ["798-1364", "645-7689", "435-8291", "956-1745"]
+
+    // 其他一些常用方法
+    let mut map = HashMap::<String, String>::new();
+    map.insert("foo".to_string(), "foo".to_string());
+    match map.entry("foo".to_string()) {
+        Vacant(entry) => {
+            // 空的情况
+            entry.insert("bar".to_string());
+        }
+        Occupied(mut entry) => {
+            // 非空的情况: 取出值在后面追加内容
+            entry.get_mut().push_str("bar");
+        }
+    }
+
+    println!("the value of foo is => {:?}", map.get(&("foo".to_string())));
+
+    let mut h: HashMap<&str, isize> = HashMap::new();
+    h.insert("foo", 42);
+    h.insert("bar", 1);
+    match h.entry("foo") {
+        Vacant(entry) => {
+            entry.insert(1);
+        }
+        Occupied(mut entry) => {
+            *entry.get_mut() += 1;
+        }
+    }
+    println!("foo={:?}", h.get(&("foo")));
+    assert_eq!(h["foo"], 43);
+
+    let mut h = HashMap::<String, isize>::new();
+    h.insert("foo".to_string(), 42);
+    assert_eq!(h.contains_key(&"foo".to_string()), true);
+    assert_eq!(h.contains_key(&"bar".to_string()), false);
+    h.insert("bar".to_string(), 1);
+
+    // List keys of the HashMap
+    let mut keys: Vec<String> = Vec::new();
+    for (k, _) in h.iter() {
+        keys.push(k.to_string());
+    }
+
+    println!("keys: {:?}", keys); // keys: ["foo", "bar"]
+    let keys = h.keys().map(|v| v.clone()).collect::<Vec<String>>();
+    println!("keys: {:?}", keys); // keys: ["foo", "bar"]
+
+    // List values fo the HashMap
+    let values = h.values().map(|v| v.clone()).collect::<Vec<isize>>();
+    println!("values: {:?}", values); // values: [42, 1]
 }
 
 #[derive(Debug)]
