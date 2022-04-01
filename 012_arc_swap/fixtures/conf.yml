@@ -1,0 +1,8 @@
+---
+network:
+  addr: "127.0.0.1"
+  port: 3000
+
+params:
+  max_connections: 10
+  max_payload_size: 10240
