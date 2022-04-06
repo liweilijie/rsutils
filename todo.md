@@ -26,3 +26,5 @@ struct Node {
 - [https://github.com/blobcode/pine.git](https://github.com/blobcode/pine.git) A simple hyper-based reverse proxy built in rust.
 - [https://github.com/ttys3/static-server](https://github.com/ttys3/static-server) web server
 - [https://github.com/ttys3/static-server](https://github.com/ttys3/static-server) simple static-server by axum
+- [https://github.com/waltzofpearls/otto](https://github.com/waltzofpearls/otto) 一个rust的监控程序,有意思.
+- [rustcc相关的代码,有postgres的操作设计等](https://github.com/daogangtang/forustm)
