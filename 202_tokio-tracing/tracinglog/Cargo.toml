@@ -9,4 +9,5 @@ edition = "2018"
 tracing = "0.1"
 tracing-attributes = "0.1.16" # for async-fn example
 tokio = { version = "1.1", features = ["full"] } # for async-fn example
-tracing-subscriber = { version = "0.3.9", features = ["env-filter"] }
+tracing-subscriber = { version = "0.3.9", features = ["env-filter", "time", "local-time"] }
+time = { version = "0.3.9", features = ["macros"] }
