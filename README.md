@@ -134,3 +134,8 @@ open ./build/x86_64-pc-windows-msvc/doc/std/index.html
 - gd
 - ctrl+o
 - cmd+.
+
+## 笔记
+
+- [字符串常用备忘](String.md)
+- [函数式编程备忘](func.md)
