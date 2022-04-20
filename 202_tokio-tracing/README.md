@@ -37,7 +37,22 @@ fn main() {
 ```
 
 ## 修改东8区并且自定义时间格式
+
+需要引入的库
+
+```toml
+time = "0.3.9"
+tracing = "0.1.34"
+tracing-subscriber = {version = "0.3.11", features = ["env-filter", "time", "local-time"]}
+```
+
+然后代码如下：
+
 ```rust
+
+use time::macros::format_description;
+use time::UtcOffset;
+use tracing_subscriber::fmt::time::OffsetTime;
 
 fn main() {
     // 第三种, 自定义时间显示格式
