@@ -41,7 +41,7 @@ fn main() {
 需要引入的库
 
 ```toml
-time = "0.3.9"
+time = { version = "0.3.9", features = ["macros"] }
 tracing = "0.1.34"
 tracing-subscriber = {version = "0.3.11", features = ["env-filter", "time", "local-time"]}
 ```
