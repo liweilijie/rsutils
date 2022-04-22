@@ -137,5 +137,6 @@ open ./build/x86_64-pc-windows-msvc/doc/std/index.html
 
 ## 笔记
 
+- [rust错误处理](./204_rust-error-handle/README.md)
 - [字符串常用备忘](String.md)
 - [函数式编程备忘](func.md)
