@@ -72,7 +72,7 @@ cargo add tokio --features full
 
 先设置 git 的代理 
 
-```toml
+```bash
  # 使用 http 代理
 git config --global http.proxy http://222.213.23.73:2500
 
