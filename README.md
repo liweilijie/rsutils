@@ -66,6 +66,48 @@ cargo add reqwest --features json
 cargo add tokio --features full
 ```
 
+## Cargo代理设置
+
+[cargo 代理设置](https://skyao.io/learning-rust/docs/build/cargo/settings.html)
+
+先设置 git 的代理 
+
+```toml
+ # 使用 http 代理
+git config --global http.proxy http://222.213.23.73:2500
+
+git config --global http.proxy http://127.0.0.1:8001
+git config --global https.proxy http://127.0.0.1:8001
+
+# 使用 socks5 代理
+git config --global http.proxy socks5://192.168.0.1:23456
+
+# 删除
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
+`cat ~/.gitconfig` 查看设置结果
+
+但是，上面的设置只对直接使用 git 命令有效，当使用 cargo 命令时，依然会卡住。
+
+需要为 cargo 单独设置代理，新建或打开文件 `~/.cargo/config` ，使用 `http` 代理:
+
+```toml
+[http]
+proxy = "222.213.23.73:2500"
+[https]
+proxy = "222.213.23.73:2500"
+```
+使用`socks5`代理:
+
+```toml
+[http]
+proxy = "socks5://192.168.0.1:23456"
+[https]
+proxy = "socks5://192.168.0.1:23456"
+```
+
 ## 编译中文文档
 
 构建参考:
