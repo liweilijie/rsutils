@@ -66,6 +66,14 @@ cargo add reqwest --features json
 cargo add tokio --features full
 ```
 
+**运行测试或者代码**
+```bash
+cargo test -- --color always --nocapture
+# 如果指定运行某一个 workspace 的话
+cargo test --workspace db -- --color always --nocapture
+cargo test -- --show-output
+```
+
 ## Cargo代理设置
 
 [cargo 代理设置](https://skyao.io/learning-rust/docs/build/cargo/settings.html)
@@ -107,6 +115,14 @@ proxy = "socks5://192.168.0.1:23456"
 [https]
 proxy = "socks5://192.168.0.1:23456"
 ```
+
+安装一些常用的编译环境
+
+ ```bash
+ sudo apt install build-essential -y
+ sudo apt install libssl-dev -y
+ sudo apt install  pkg-config -y
+ ```
 
 ## 编译中文文档
 
