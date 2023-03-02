@@ -62,10 +62,15 @@ cargo new 204_error --bin --name errors
 **安装crates以及使用features**
 ```bash
 cargo install cargo-edit
-cargo add anyhow colored jsonxf mime
+cargo add thiserror anyhow colored jsonxf mime
 cargo add clap --allow-prerelease
 cargo add reqwest --features json
 cargo add tokio --features full
+cargo add tokio-stream
+cargo add futures
+cargo add rand
+cargo add serde --features=derive
+cargo add reqwest --features "json, rustls-tls"
 ```
 
 **运行测试或者代码**
