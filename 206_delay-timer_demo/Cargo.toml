@@ -1,0 +1,11 @@
+[package]
+name = "delay-timer-demo"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.60"
+delay_timer = { version = "0.11.3", features = ["full"] }
+tokio = { version = "1.20.1", features = ["full"] }
