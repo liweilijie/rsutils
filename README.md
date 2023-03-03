@@ -71,6 +71,9 @@ cargo add futures
 cargo add rand
 cargo add serde --features=derive
 cargo add reqwest --features "json, rustls-tls"
+cargo add colored # 命令终端多彩显示
+cargo add jsonxf # JSON pretty print 格式化
+cargo add mime
 ```
 
 **运行测试或者代码**
