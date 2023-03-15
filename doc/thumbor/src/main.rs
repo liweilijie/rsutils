@@ -1,11 +1,14 @@
+mod engine;
 mod pb;
 
+use crate::engine::{Engine, Photon};
 use anyhow::Result;
 use axum::extract::Path;
 use axum::http::{HeaderMap, HeaderValue, StatusCode};
 use axum::routing::get;
 use axum::{Extension, Router};
 use bytes::Bytes;
+use image::ImageOutputFormat;
 use lru::LruCache;
 use pb::*;
 use percent_encoding::{percent_decode_str, percent_encode, NON_ALPHANUMERIC};
@@ -70,10 +73,17 @@ async fn generate(
         .await
         .map_err(|_| StatusCode::BAD_REQUEST)?;
 
-    // TODO: process image
+    // use image engine process image
+    let mut engine: Photon = data
+        .try_into()
+        .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+    engine.apply(&spec.specs);
+    let image = engine.generate(ImageOutputFormat::Jpeg(85));
+    info!("Finished processing: image size {}", image.len());
+
     let mut headers = HeaderMap::new();
     headers.insert("content-type", HeaderValue::from_static("image/jpeg"));
-    Ok((headers, data.to_vec()))
+    Ok((headers, image))
 }
 
 #[instrument(level = "info", skip(cache))]
