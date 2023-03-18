@@ -39,3 +39,4 @@ target/
 
 # ctags
 **/*.vi
+**/tmp/*

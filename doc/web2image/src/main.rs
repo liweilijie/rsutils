@@ -1,7 +1,9 @@
 mod web2image;
 use std::{ffi::OsStr, path::Path};
 
+use crate::web2image::web2image;
 use clap::Parser;
+use image::ImageFormat;
 use url::Url;
 
 /// Simple program to greet a person
@@ -9,7 +11,7 @@ use url::Url;
 #[command(author = "liwei", version = "0.1", about = "web2image", long_about = None)]
 struct Args {
     /// Name of the person to greet
-    #[arg(short, long, value_parser = valid_filename)]
+    #[arg(short, long, value_parser = valid_filename, default_value = "./tmp/snapshot.jpg")]
     output: String,
 
     /// Number of times to greet
@@ -17,13 +19,14 @@ struct Args {
     url: String,
 }
 
-fn get_file_ext(path: &Path) -> Option<String> {
+fn get_image_format(path: &Path) -> Option<ImageFormat> {
     path.extension()
         .and_then(|p| OsStr::to_str(p))
         .and_then(|ext| {
             let ext = ext.to_lowercase();
             match ext.as_str() {
-                "jpg" | "png" | "jpeg" => Some(ext),
+                "jpg" | "jpeg" => Some(ImageFormat::Jpeg),
+                "png" => Some(ImageFormat::Png),
                 _ => None,
             }
         })
@@ -33,7 +36,7 @@ fn get_file_ext(path: &Path) -> Option<String> {
 fn valid_filename(name: &str) -> Result<String, String> {
     let path = Path::new(name);
     let parent = path.parent().and_then(|p| p.is_dir().then_some(p));
-    let ext = get_file_ext(path);
+    let ext = get_image_format(path);
 
     if parent.is_none() || ext.is_none() {
         return Err("file path must be exists and file must be jpg, jpeg or png.".into());
@@ -54,5 +57,7 @@ fn main() {
 
     println!("{args:#?}");
 
-    // web2image(opts.url, opts.output)
+    let format = get_image_format(Path::new(&args.output)).unwrap();
+
+    web2image(&args.url, &args.output, format).unwrap();
 }
