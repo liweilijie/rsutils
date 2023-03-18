@@ -20,6 +20,7 @@ fn url2image(url: &str) -> Result<DynamicImage> {
     let tab = browser.new_tab()?;
 
     tab.navigate_to(url)?;
+    tab.wait_for_element("body")?;
 
     tab.wait_until_navigated()?;
 
