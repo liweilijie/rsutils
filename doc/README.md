@@ -17,3 +17,6 @@ clap 的默认解析函数功能`#[arg(value_parser = parse_kv_pair)]` 请看[ht
 - [异步适配器.tricoder](tricoder)
 - [cli命令行工具.httpie](httpie)
 - [图片处理服务器.thumbor](thumbor)
+- [clap.validator](web2image)
+- [qrcode](web2image)
+- [rust中的 map_or() and map_or_else()](map_or-and-map_or_else.md)

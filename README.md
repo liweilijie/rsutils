@@ -57,6 +57,8 @@ rustup update stable
 ```bash
 cargo new 002_httpie --bin --name httpie
 cargo new 204_error --bin --name errors
+mkdir 204_error/examples
+cargo run --example rigid
 ```
 
 **安装crates以及使用features**
