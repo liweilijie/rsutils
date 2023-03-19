@@ -20,3 +20,4 @@ clap 的默认解析函数功能`#[arg(value_parser = parse_kv_pair)]` 请看[ht
 - [clap.validator](web2image)
 - [qrcode](web2image)
 - [rust中的 map_or() and map_or_else()](map_or-and-map_or_else.md)
+- [rust 中 error 最佳实践 thiserror, anyhow](../103_error_best_practices)
